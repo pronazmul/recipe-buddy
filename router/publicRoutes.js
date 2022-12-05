@@ -8,6 +8,8 @@ const {
   getAboutPage,
   getLoginPage,
   getRegisterPage,
+  getFoodList,
+  addFood,
 } = require('../controller/publicController')
 
 const { redirectLogin } = require('../middlewares/common/checkLogin')
@@ -24,6 +26,12 @@ router.get('/login', decorateHtmlResponse('Login'), getLoginPage)
 
 //Register Page
 router.get('/register', decorateHtmlResponse('Register'), getRegisterPage)
+
+//Get Food List Page
+router.get('/searchfood', decorateHtmlResponse('Food List'), getFoodList)
+
+//Add Food List Page
+router.get('/addFood', decorateHtmlResponse('Add Food'), addFood)
 
 // Module Export:
 module.exports = router

@@ -1,0 +1,142 @@
+<%- include('./partials/header.ejs') %>
+<!-- component -->
+<div class="flex items-center justify-center h-[90vh]">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0 flex flex-col justify-center h-full">
+        <h1
+          class="text-2xl md:text-3xl xl:text-54xl font-bold tracking-tight mb-6 text-green-500"
+        >
+          Add New Food
+        </h1>
+
+        <img class="w-28" src="./images/logo.png" alt="" />
+      </div>
+    </div>
+    <div class="mt-5 md:col-span-2 md:mt-0">
+      <form action="" method="">
+        <div class="overflow-hidden shadow sm:rounded-md">
+          <div class="bg-white px-4 py-5 sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-3 space-y-2">
+                <label
+                  for="food-name"
+                  class="block text-sm font-medium text-gray-700"
+                  >Food Name</label
+                >
+                <input
+                  type="text"
+                  name="food-name"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 space-y-2">
+                <label
+                  for="typical-values-per-unit"
+                  class="block text-sm font-medium text-gray-700"
+                  >Typical Value Per Unit</label
+                >
+                <input
+                  type="text"
+                  name="typical-values-per-unit"
+                  id="typical-values-per-unit"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 space-y-2">
+                <label
+                  for="unit-name"
+                  class="block text-sm font-medium text-gray-700"
+                  >Unit Name</label
+                >
+                <input
+                  type="text"
+                  name="unit-name"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 space-y-2">
+                <label
+                  for="curbs"
+                  class="block text-sm font-medium text-gray-700"
+                  >Curbs</label
+                >
+                <input
+                  type="text"
+                  name="curbs"
+                  id="curbs"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 space-y-2">
+                <label for="fat" class="block text-sm font-medium text-gray-700"
+                  >Fat</label
+                >
+                <input
+                  type="text"
+                  name="fat"
+                  id="fat"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 space-y-2">
+                <label
+                  for="protin"
+                  class="block text-sm font-medium text-gray-700"
+                  >Protin</label
+                >
+                <input
+                  type="text"
+                  name="protin"
+                  id="protin"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 space-y-2">
+                <label
+                  for="salt"
+                  class="block text-sm font-medium text-gray-700"
+                  >Salt</label
+                >
+                <input
+                  type="text"
+                  name="salt"
+                  id="salt"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3 space-y-2">
+                <label
+                  for="sugar"
+                  class="block text-sm font-medium text-gray-700"
+                  >Sugar</label
+                >
+                <input
+                  type="text"
+                  name="sugar"
+                  id="sugar"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+            <button
+              type="submit"
+              class="mt-5 w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Add New Food
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

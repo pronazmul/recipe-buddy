@@ -6,25 +6,42 @@ const createError = require('http-errors')
 // Internal Modules:
 const User = require('../models/People')
 
-// Get Home Page
+// Render Home Page
 const getHomePage = (req, res, next) => {
   res.render('index')
 }
 
-// Get About Page
+// Render About Page
 const getAboutPage = (req, res, next) => {
   res.render('about')
 }
 
-// Get Login Page
+// Render Login Page
 const getLoginPage = (req, res, next) => {
   res.render('login')
 }
 
-// Get Home Page
+// render Register Page
 const getRegisterPage = (req, res, next) => {
   res.render('register')
 }
 
+// Render Food List page
+const getFoodList = (req, res, next) => {
+  res.render('foodList')
+}
+
+// Render Add Food Page
+const addFood = (req, res, next) => {
+  res.render('addFood')
+}
+
 // Module Export
-module.exports = { getHomePage, getAboutPage, getLoginPage, getRegisterPage }
+module.exports = {
+  getHomePage,
+  getAboutPage,
+  getLoginPage,
+  getRegisterPage,
+  getFoodList,
+  addFood,
+}
