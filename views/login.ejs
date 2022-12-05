@@ -1,0 +1,36 @@
+<%- include('./partials/header.ejs') %>
+<!-- component -->
+<div class="flex items-center justify-center h-[90vh]">
+  <!-- Login Container -->
+  <div
+    class="w-3/6 flex-col border bg-white px-8 py-10 shadow-md rounded-[4px]"
+  >
+    <div class="mb-6 flex justify-center">
+      <img class="w-28" src="./images/logo.png" alt="" />
+    </div>
+    <div class="flex flex-col text-sm rounded-md">
+      <input
+        class="mb-5 rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-yellow-500"
+        type="text"
+        name="username"
+        placeholder="Username"
+      />
+      <input
+        class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-yellow-500"
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
+    </div>
+    <button
+      class="mt-5 w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+      type="submit"
+    >
+      Login
+    </button>
+    <div class="mt-5 flex justify-between text-sm text-gray-600">
+      <span>Create a new account?</span>
+      <a href="/register">Register</a>
+    </div>
+  </div>
+</div>

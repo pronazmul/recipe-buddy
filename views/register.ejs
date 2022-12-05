@@ -1,0 +1,55 @@
+<%- include('./partials/header.ejs') %>
+<!-- component -->
+<div class="flex items-center justify-center h-[90vh]">
+  <!-- Login Container -->
+  <div
+    class="w-3/6 flex-col border bg-white px-8 py-10 shadow-md rounded-[4px]"
+  >
+    <div class="mb-4 flex justify-center">
+      <img class="w-28" src="./images/logo.png" alt="" />
+    </div>
+    <div class="space-y-2">
+      <div class="flex flex-row text-sm rounded-md space-x-2">
+        <input
+          class="rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+          type="text"
+          placeholder="First Name"
+        />
+        <input
+          class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+          type="text"
+          placeholder="Last Name"
+        />
+      </div>
+      <div class="flex flex-row text-sm rounded-md space-x-2">
+        <input
+          class="rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+          type="email"
+          placeholder="Email Address"
+        />
+        <input
+          class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+          type="username"
+          placeholder="Username"
+        />
+      </div>
+      <div class="flex flex-col text-sm rounded-md">
+        <input
+          class="rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-yellow-500"
+          type="password"
+          placeholder="Password"
+        />
+      </div>
+    </div>
+    <button
+      class="mt-5 w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+      type="submit"
+    >
+      Register
+    </button>
+    <div class="mt-5 flex justify-between text-sm text-gray-600">
+      <a href="#">Already have an account?</a>
+      <a href="/login">Login</a>
+    </div>
+  </div>
+</div>
