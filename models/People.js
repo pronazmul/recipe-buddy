@@ -1,19 +1,24 @@
 const mongoose = require('mongoose')
+let uniqueValidator = require('mongoose-unique-validator')
 
 const peopleSchema = mongoose.Schema(
   {
-    name: {
+    firstName: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    lastName: {
       type: String,
       trim: true,
       required: true,
     },
     email: {
       type: String,
-      trim: true,
-      lowercase: true,
+      unique: true,
       required: true,
     },
-    mobile: {
+    username: {
       type: String,
       required: true,
     },
@@ -21,19 +26,16 @@ const peopleSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    avatar: {
-      type: String,
-    },
-    role: {
-      type: String,
-      enum: ['user', 'admin'],
-      default: 'user',
-    },
   },
   {
     timestamps: true,
   }
 )
+
+// Integrate MOngoose Unique Validoator Plugin
+peopleSchema.plugin(uniqueValidator, {
+  message: '{VALUE} Already Exists!',
+})
 
 const People = mongoose.model('People', peopleSchema)
 

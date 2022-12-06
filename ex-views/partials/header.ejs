@@ -12,9 +12,8 @@
     <link rel="stylesheet" href="./stylesheets/style.css" />
     <script src="./js/toastify.js"></script>
     <script src="./js/moment.js"></script>
-
   </head>
-  
+
   <body>
     <div class="menu">
       <% if(loggedInUser && loggedInUser.email){ %>
@@ -22,7 +21,9 @@
       <div class="menu-item"><a href="/users">Users</a></div>
       <div class="menu-item">
         <% if (loggedInUser && loggedInUser.avatar) { %>
-        <img src="./uploads/avatars/<%= loggedInUser.avatar %>" alt="<%= loggedInUser.name %>"
+        <img
+          src="./uploads/avatars/<%= loggedInUser.avatar %>"
+          alt="<%= loggedInUser.name %>"
         />
         <% } else { %>
         <img src="./images/nophoto.png" alt="<%= loggedInUser.name %>" />
@@ -38,20 +39,20 @@
     <script>
       // Toast
       const logOutToast = Toastify({
-        text:"You are being logged out...",
-        duration:1000
-      });
+        text: 'You are being logged out...',
+        duration: 1000,
+      })
 
       // User Logout
-      function logout(){
-        fetch("/",{method:"DELETE"})
-      
-        logOutToast.showToast();
-      // User Redirect to loggedIn Page
-      setTimeout(()=>{
-        window.location.replace("/")
-      },1000)
+      function logout() {
+        fetch('/', { method: 'DELETE' })
+
+        logOutToast.showToast()
+        // User Redirect to loggedIn Page
+        setTimeout(() => {
+          window.location.replace('/')
+        }, 1000)
       }
-
-
     </script>
+  </body>
+</html>

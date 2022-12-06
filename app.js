@@ -4,27 +4,21 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const path = require('path')
 const cookieParser = require('cookie-parser')
-const http = require('http')
 const moment = require('moment')
+const morgan = require('morgan')
 
 // Internal Dependencies:
 const {
   notFoundHandler,
   errorHandler,
 } = require('./middlewares/common/errorHandler')
-const loginRouter = require('./router/loginRouter')
-const userRouter = require('./router/userRouter')
-const inboxRouter = require('./router/inboxRouter')
-const publicRouter = require('./router/publicRoutes')
+const authRouter = require('./router/authRouter')
+const foodRouter = require('./router/foodRouter')
+const publicRouter = require('./router/publicRouter')
 
 // Express Setup:
 const app = express()
-const server = http.createServer(app)
 dotenv.config()
-
-// socket creation
-const io = require('socket.io')(server)
-global.io = io
 
 // Moment Set as application local for ejs engine:
 app.locals.moment = moment
@@ -39,6 +33,7 @@ mongoose
   .catch((error) => console.log(error))
 
 //   Request Parser
+app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -53,8 +48,11 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 
 // Routing Setup
 app.use('/', publicRouter)
-app.use('/users', userRouter)
-app.use('/inbox', inboxRouter)
+app.use('/auth', authRouter)
+app.use('/food', foodRouter)
+
+// Health Check
+app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }))
 
 // Not Found Handler
 app.use(notFoundHandler)
@@ -62,6 +60,6 @@ app.use(notFoundHandler)
 // Error Handler
 app.use(errorHandler)
 
-server.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Application listening to port ${process.env.PORT}`)
 })
