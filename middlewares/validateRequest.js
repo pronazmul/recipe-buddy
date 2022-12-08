@@ -5,7 +5,6 @@ const validateRequest = (schema) => async (req, res, next) => {
     await schema.validate(req.body)
     next()
   } catch (error) {
-    console.log(error)
     next(createHttpError(422, error))
   }
 }

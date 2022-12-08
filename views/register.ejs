@@ -1,8 +1,10 @@
 <%- include('./partials/header.ejs') %>
 <!-- component -->
 <div class="flex items-center justify-center h-[90vh]">
-  <!-- Login Container -->
-  <div
+  <!-- Registration Container -->
+  <form
+    id="register"
+    onsubmit="handleRegister(event)"
     class="w-3/6 flex-col border bg-white px-8 py-10 shadow-md rounded-[4px]"
   >
     <div class="mb-4 flex justify-center">
@@ -13,11 +15,13 @@
         <input
           class="rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
           type="text"
+          name="firstName"
           placeholder="First Name"
         />
         <input
           class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
           type="text"
+          name="lastName"
           placeholder="Last Name"
         />
       </div>
@@ -25,11 +29,13 @@
         <input
           class="rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
           type="email"
+          name="email"
           placeholder="Email Address"
         />
         <input
           class="border rounded-[4px] p-3 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
           type="username"
+          name="username"
           placeholder="Username"
         />
       </div>
@@ -37,11 +43,13 @@
         <input
           class="rounded-[4px] border p-3 hover:outline-none focus:outline-none hover:border-yellow-500"
           type="password"
+          name="password"
           placeholder="Password"
         />
       </div>
     </div>
     <button
+      type="submit"
       class="mt-5 w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
       type="submit"
     >
@@ -51,5 +59,55 @@
       <a href="#">Already have an account?</a>
       <a href="/login">Login</a>
     </div>
-  </div>
+  </form>
 </div>
+
+<script>
+  function showToast(msg) {
+    Toastify({
+      text: msg,
+      duration: 1000,
+    }).showToast()
+  }
+
+  async function handleRegister(event) {
+    event.preventDefault()
+    let firstName = document.forms['register']['firstName'].value
+    let lastName = document.forms['register']['lastName'].value
+    let email = document.forms['register']['email'].value
+    let username = document.forms['register']['username'].value
+    let password = document.forms['register']['password'].value
+
+    if (!firstName.length) {
+      return showToast('First name is Rquired!')
+    } else if (!lastName.length) {
+      return showToast('Last name is Rquired!')
+    } else if (!email.length) {
+      return showToast('Email is Rquired!')
+    } else if (!username.length) {
+      return showToast('Username is Rquired!')
+    } else if (!password.length) {
+      return showToast('Password is Rquired!')
+    } else {
+      try {
+        let data = { firstName, lastName, email, username, password }
+        const response = await fetch('/auth/register', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        let result = await response.json()
+        if (response.status === 200) {
+          return showToast('User Registration Success!')
+        } else {
+          return showToast(result.message)
+        }
+      } catch (error) {
+        return showToast(error.message)
+      }
+    }
+  }
+</script>

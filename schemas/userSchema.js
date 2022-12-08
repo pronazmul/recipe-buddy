@@ -9,10 +9,7 @@ const registrationSchema = yup.object().shape({
     .matches(email, 'Invalid Email Address!')
     .required('Email is Required!'),
   username: yup.string().required('User Name is Required!'),
-  password: yup
-    .string()
-    .matches(password, 'Invalid Password!')
-    .required('Password Is Required!'),
+  password: yup.string().required('Password Is Required!'),
 })
 
 const loginSchema = yup.object().shape({
@@ -20,10 +17,7 @@ const loginSchema = yup.object().shape({
     .string()
     .matches(email, 'Authentication Failed')
     .required('Email is Required!'),
-  password: yup
-    .string()
-    .matches(password, 'Authentication Failed')
-    .required('Password Is Required!'),
+  password: yup.string().required('Password Is Required!'),
 })
 
 module.exports = {

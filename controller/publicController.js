@@ -5,6 +5,7 @@ const createError = require('http-errors')
 
 // Internal Modules:
 const User = require('../models/People')
+const Food = require('../models/Food')
 
 // Render Home Page
 const getHomePage = (req, res, next) => {
@@ -27,7 +28,9 @@ const getRegisterPage = (req, res, next) => {
 }
 
 // Render Food List page
-const getFoodList = (req, res, next) => {
+const getFoodList = async (req, res, next) => {
+  const foods = await Food.find()
+  res.locals.data = foods
   res.render('foodList')
 }
 
