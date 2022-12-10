@@ -3,6 +3,7 @@ const createError = require('http-errors')
 const jwt = require('jsonwebtoken')
 
 const checkLogin = (req, res, next) => {
+  console.log(req.get('Referrer'))
   const cookies =
     Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null
 
@@ -19,13 +20,14 @@ const checkLogin = (req, res, next) => {
       next()
     } catch (error) {}
   } else {
-    if (res.locals.html) {
-      res.redirect('/')
-    } else {
-      res.status(401).json({
-        error: 'Authentication Failure!',
-      })
-    }
+    next()
+    // if (res.locals.html) {
+    //   res.redirect('/login')
+    // } else {
+    //   res.status(401).json({
+    //     error: 'Authentication Failure!',
+    //   })
+    // }
   }
 }
 
@@ -35,28 +37,18 @@ const redirectLogin = (req, res, next) => {
   if (!cookies) {
     next()
   } else {
-    res.redirect('/inbox')
+    res.redirect('/addFood')
   }
 }
-
-const checkRole = (role) => (req, res, next) => {
-  console.log(req.user)
-  if (req.user.role && role.includes(req.user.role)) {
+const redirectLogout = (req, res, next) => {
+  let cookies =
+    Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null
+  if (cookies) {
     next()
   } else {
-    if (res.locals.html) {
-      next(createError(401, 'You are not Authorized to access this page!'))
-    } else {
-      res.status(401).json({
-        errors: {
-          common: {
-            msg: 'You are not Authorized To access this page!',
-          },
-        },
-      })
-    }
+    res.redirect('/login')
   }
 }
 
 // Module Export :
-module.exports = { checkRole, checkLogin, redirectLogin }
+module.exports = { checkLogin, redirectLogin, redirectLogout }

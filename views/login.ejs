@@ -68,9 +68,11 @@
         })
         let result = await response.json()
         if (response.status === 200) {
-          return showToast('Login Success!')
+          showToast('Login Success!')
+          //Redirect To add Food
+          return document.location.replace('/addFood')
         } else {
-          return showToast(result.message)
+          return showToast('Authentication Failed!')
         }
       } catch (error) {
         return showToast(error.message)

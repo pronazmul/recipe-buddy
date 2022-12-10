@@ -41,11 +41,11 @@ const login = async (req, res, next) => {
           signed: true,
         })
 
-        res.status(200).json({ ...userObject, token })
-
-        // Set Logged in user as local Identifier:
-        // res.locals.loggedInUser = userObject
-        // res.redirect('/inbox')
+        // Check Json response for api test
+        res.locals.loggedInUser = userObject
+        res
+          .status(200)
+          .json({ ...userObject, token, redirect_path: '/addFood' })
       } else {
         throw createError('Authentication failed')
       }
