@@ -29,7 +29,9 @@ const getRegisterPage = (req, res, next) => {
 
 // Render Food List page
 const getFoodList = async (req, res, next) => {
-  const foods = await Food.find()
+  const filter = req.query.filter
+  const query = filter ? { name: { $regex: filter, $options: 'i' } } : {}
+  const foods = await Food.find(query)
   res.locals.data = foods
   res.render('foodList')
 }

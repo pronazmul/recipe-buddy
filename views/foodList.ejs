@@ -1,7 +1,7 @@
 <%- include('./partials/header.ejs') %>
 
 <main class="w-full h-[90vh]">
-  <div class="mt-5 grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+  <div class="mt-5 grid grid-cols-12 gap-2">
     <div class="col-span-12 sm:col-span-6 lg:col-span-8">
       <!-- Food List Table -->
       <div class="container max-w-3xl px-4 mx-auto sm:px-8">
@@ -10,11 +10,14 @@
             <h2 class="text-2xl leading-tight">Food List</h2>
             <div class="text-end">
               <form
+                id="filterForm"
+                onsubmit="handleFilter(event)"
                 class="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0"
               >
                 <div class="relative">
                   <input
                     type="text"
+                    name="filter"
                     id='"form-subscribe-Filter'
                     class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                     placeholder="Search By Food name"
@@ -208,6 +211,7 @@
 </main>
 
 <script>
+  // chart Functionalities
   const ctx = document.getElementById('myChart')
   const myChart = new Chart(ctx, {
     type: 'pie',
@@ -241,4 +245,11 @@
       },
     },
   })
+
+  // Filter Functionalities
+  async function handleFilter(event) {
+    event.preventDefault()
+    let filter = document.forms['filterForm']['filter'].value
+    return document.location.replace(`/searchfood?filter=${filter}`)
+  }
 </script>

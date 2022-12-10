@@ -8,13 +8,13 @@ const foodSchema = mongoose.Schema(
       trim: true,
       required: true,
     },
-    typicalValue: {
-      type: Number,
+    typicalValueUnit: {
+      type: String,
       trim: true,
       required: true,
     },
-    typicalValueUnit: {
-      type: String,
+    typicalValue: {
+      type: Number,
       trim: true,
       required: true,
     },
