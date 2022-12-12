@@ -25,7 +25,7 @@ app.locals.moment = moment
 
 // Database Connection
 mongoose
-  .connect(process.env.MONGO_COMPASS, {
+  .connect(process.env.MONGO_ATLAS, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

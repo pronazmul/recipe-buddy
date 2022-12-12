@@ -51,7 +51,8 @@ const getSingle = async (req, res, next) => {
  */
 const getAll = async (req, res, next) => {
   try {
-    let query = {}
+    const search = req.query.search
+    const query = search ? { name: { $regex: search, $options: 'i' } } : {}
     let projection = {}
     const options = { sort: { id: 1 } }
     const data = await Food.find(query, projection, options)
