@@ -3,6 +3,7 @@ const createError = require('http-errors')
 
 //Internal Module:
 const Food = require('../models/Food')
+const Recepies = require('../models/Recepies')
 
 /**
  * @desc Create
@@ -36,7 +37,7 @@ const getSingle = async (req, res, next) => {
   try {
     let query = { _id: req.params.id }
     let projection = {}
-    const data = await Food.findOne(query, projection)
+    const data = await Recepies.findOne(query, projection)
     res.status(200).json(data)
   } catch (error) {
     next(createError(500, 'Failed to fetch Data By ID!'))
@@ -55,7 +56,7 @@ const getAll = async (req, res, next) => {
     const query = search ? { name: { $regex: search, $options: 'i' } } : {}
     let projection = {}
     const options = { sort: { id: 1 } }
-    const data = await Food.find(query, projection, options)
+    const data = await Recepies.find(query, projection, options)
     res.status(200).json(data)
   } catch (error) {
     next(createError(500, 'Failed to fetch Data!'))

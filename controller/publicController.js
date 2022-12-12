@@ -6,6 +6,7 @@ const createError = require('http-errors')
 // Internal Modules:
 const User = require('../models/People')
 const Food = require('../models/Food')
+const Recepies = require('../models/Recepies')
 
 // Render Home Page
 const getHomePage = (req, res, next) => {
@@ -31,7 +32,7 @@ const getRegisterPage = (req, res, next) => {
 const getFoodList = async (req, res, next) => {
   const filter = req.query.filter
   const query = filter ? { name: { $regex: filter, $options: 'i' } } : {}
-  const foods = await Food.find(query)
+  const foods = await Recepies.find(query)
   res.locals.data = foods
   res.render('foodList')
 }

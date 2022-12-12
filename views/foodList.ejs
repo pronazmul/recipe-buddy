@@ -44,7 +44,7 @@
                       scope="col"
                       class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
                     >
-                      Food Name
+                      Recipe
                     </th>
                     <th
                       scope="col"
@@ -56,13 +56,19 @@
                       scope="col"
                       class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
                     >
-                      Carbs
+                      Weight
                     </th>
                     <th
                       scope="col"
                       class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
                     >
-                      Fat
+                      Calories
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+                    >
+                      Category
                     </th>
                     <th
                       scope="col"
@@ -86,27 +92,37 @@
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        <%= food.typicalValue%> <%= food.typicalValueUnit%>
+                        <%= food.unit%>
                       </p>
                     </td>
                     <td
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        <%= food.carbs %>
+                        <%= food.weight %>
                       </p>
                     </td>
                     <td
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        <%= food.fat %>
+                        <%= food.calories %>
+                      </p>
+                    </td>
+                    <td
+                      class="px-5 py-5 text-sm bg-white border-b border-gray-200"
+                    >
+                      <p class="text-gray-900 whitespace-no-wrap">
+                        <%= food.category %>
                       </p>
                     </td>
                     <td
                       class="px-5 py-6 bg-white border-b border-gray-200 flex space-x-2"
                     >
-                      <a href="#" class="text-blue-600 hover:text-blue-900">
+                      <span
+                        onclick="viewFood('<%=food._id%>')"
+                        class="text-blue-600 hover:text-blue-900 cursor-pointer"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -126,39 +142,7 @@
                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                           />
                         </svg>
-                      </a>
-                      <a href="#" class="text-blue-600 hover:text-blue-900">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          class="w-5 h-5"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                          />
-                        </svg>
-                      </a>
-                      <a href="#" class="text-blue-600 hover:text-blue-900">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          class="w-5 h-5"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                          />
-                        </svg>
-                      </a>
+                      </span>
                     </td>
                   </tr>
                   <% }) %> <% } %>
@@ -174,7 +158,8 @@
     <div class="col-span-12 sm:col-span-6 lg:col-span-4">
       <!-- Selected Food Items -->
       <div
-        class="container flex flex-col items-center justify-center w-full mx-auto py-8"
+        id="nutritionChart"
+        class="container flex flex-col items-center justify-center w-full mx-auto py-8 hidden"
       >
         <div
           class="w-full px-4 py-5 mb-2 bg-white rounded-md shadow sm:px-6 border-2 border-black"
@@ -185,36 +170,43 @@
             Nutrition Facts
           </h1>
           <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Amount Per Serving</span><span>10g</span>
+            <span class="font-bold">Amount Per Serving</span
+            ><span><span id="unit"></span> , <span id="weight"></span></span>
           </p>
           <p class="flex text-sm justify-between border-b-4 border-black">
-            <span class="font-bold">Calories 251</span
-            ><span>Calories from fat 86</span>
+            <span class="font-bold" id="calories"></span
+            ><span id="caloriesFromFat"></span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
             <span></span><span class="font-bold">% Daily Value</span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Total Fat 9.6g</span><span>15%</span>
+            <span class="font-bold" id="fat">Total Fat 9.6g</span
+            ><span>15%</span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Cholesterol 3.5mg</span><span>1%</span>
+            <span class="font-bold" id="cholesterol">Cholesterol 3.5mg</span
+            ><span>1%</span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Sodium 810mg</span><span>34%</span>
+            <span class="font-bold" id="water">Water 810mg</span
+            ><span>34%</span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Potassium 697mg</span><span>20%</span>
-          </p>
-          <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Total Carbohydrates 36g</span
+            <span class="font-bold" id="carbohydrate"
+              >Total Carbohydrates 36g</span
             ><span>12%</span>
           </p>
+          <p class="flex text-sm justify-between border-b border-black">
+            <span class="font-bold" id="protein">Protein 4.3g</span
+            ><span></span>
+          </p>
           <p class="flex text-sm justify-between border-b-4 border-black">
-            <span class="font-bold">Protein 4.3g</span><span></span>
+            <span class="font-bold" id="energy">Energy 4.3kj</span><span></span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Vitamin A</span><span>7.9%</span>
+            <span class="font-bold">Vitamin A</span
+            ><span id="vitamin">7.9%</span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
             <span class="font-bold">Vitamin C</span><span>37%</span>
@@ -233,8 +225,19 @@
         <div
           class="w-full px-4 py-5 mb-2 bg-white border rounded-md shadow sm:px-6"
         >
-          <canvas id="myChart" width="400" height="400"></canvas>
+          <canvas id="myChart" width="250" height="250"></canvas>
         </div>
+      </div>
+      <!-- Nothing Selected -->
+      <div
+        id="nothingSelected"
+        class="w-full px-4 py-8 mb-2 bg-white border rounded-md shadow sm:px-6 mt-10"
+      >
+        <h1
+          class="font-semibold text-md text-center border-rounded border-black pb-1.5"
+        >
+          View Recipe To get Nutrition Chart
+        </h1>
       </div>
     </div>
   </div>
@@ -242,42 +245,33 @@
 
 <script>
   //Dom Selections
+
+  let nutritionChart = document.getElementById('nutritionChart')
+  let nothingSelected = document.getElementById('nothingSelected')
   let tableBody = document.getElementById('foodList')
+  let unitSpan = document.getElementById('unit')
+  let weightSpan = document.getElementById('weight')
+  let caloriesSpan = document.getElementById('calories')
+  let caloriesFromFatSpan = document.getElementById('caloriesFromFat')
+  let fatSpan = document.getElementById('fat')
+  let cholesterolSpan = document.getElementById('cholesterol')
+  let waterSpan = document.getElementById('water')
+  let carbohydrateSpan = document.getElementById('carbohydrate')
+  let proteinSpan = document.getElementById('protein')
+  let energySpan = document.getElementById('energy')
+  let vitaminSpan = document.getElementById('vitamin')
 
-  // chart Functionalities
-  const ctx = document.getElementById('myChart')
-  const myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels: ['Protein', 'Carbohydrate', 'Fat'],
-      datasets: [
-        {
-          label: '%',
-          data: [30, 30, 40],
-          backgroundColor: [
-            'rgba(0, 255, 255, 1)',
-            'rgba(255, 214, 0, 1)',
-            'rgba(240, 3, 125, 0.8)',
-          ],
-          borderColor: [
-            'rgba(240, 157, 0, 0)',
-            'rgba(240, 157, 0, 0)',
-            'rgba(240, 157, 0, 0)',
-          ],
-          borderWidth: 4,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  })
+  const ctx = document.getElementById('myChart').getContext('2d')
 
-  // Filter Functionalities
+  // Toast Message
+  function showToast(msg) {
+    Toastify({
+      text: msg,
+      duration: 1000,
+    }).showToast()
+  }
+
+  // Filter Food By Food Name
   async function searchFood(event) {
     event.preventDefault()
     let searchInput = document.forms['filterForm']['filter'].value
@@ -289,39 +283,46 @@
       let foodList = ''
       data.forEach((food) => {
         foodList += `
-      <tr>
+        <tr>
                     <td
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        ${food?.name}
+                        ${food.name}
                       </p>
                     </td>
                     <td
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        ${food.typicalValue} ${food.typicalValueUnit}
+                        ${food.unit}
                       </p>
                     </td>
                     <td
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        ${food.carbs}
+                        ${food.weight}
                       </p>
                     </td>
                     <td
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        ${food.fat}
+                        ${food.calories}
+                      </p>
+                    </td>
+                    <td
+                      class="px-5 py-5 text-sm bg-white border-b border-gray-200"
+                    >
+                      <p class="text-gray-900 whitespace-no-wrap">
+                        ${food.category}
                       </p>
                     </td>
                     <td
                       class="px-5 py-6 bg-white border-b border-gray-200 flex space-x-2"
                     >
-                      <a href="#" class="text-blue-600 hover:text-blue-900">
+                      <span onclick="viewFood('${food._id}')" class="text-blue-600 hover:text-blue-900 cursor-pointer">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -341,46 +342,110 @@
                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                           />
                         </svg>
-                      </a>
-                      <a href="#" class="text-blue-600 hover:text-blue-900">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          class="w-5 h-5"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                          />
-                        </svg>
-                      </a>
-                      <a href="#" class="text-blue-600 hover:text-blue-900">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          class="w-5 h-5"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                          />
-                        </svg>
-                      </a>
+                      </span>
                     </td>
                   </tr>
-      `
+        `
       })
       tableBody.innerHTML = foodList
     } catch (error) {
       console.log({ error })
     }
   }
+
+  //Find Single Food for Nutrition Chart
+  async function viewFood(id) {
+    const response = await fetch(`/food/${id}`)
+    const data = await response.json()
+
+    unitSpan.innerHTML = `(${data?.unit.split(' ').splice(0, 2).join(' ')})`
+    weightSpan.innerHTML = `${data?.weight}g`
+    caloriesSpan.innerHTML = `Calories ${data?.calories}`
+    caloriesFromFatSpan.innerHTML = `Calories from fat ${data?.caloriesFromFat}`
+    fatSpan.innerHTML = `Total Fat ${data?.fat}g`
+    cholesterolSpan.innerHTML = `Cholesterol ${data?.cholesterol}m.g`
+    waterSpan.innerHTML = `Water ${data?.water}m.g`
+    carbohydrateSpan.innerHTML = `Total Carbohydrates ${data?.carbohydrate}g`
+    proteinSpan.innerHTML = `Protein ${data?.protein}g`
+    energySpan.innerHTML = `Total Energy ${data?.energy}kj`
+    vitaminSpan.innerHTML = `${data?.vitaminC}%`
+
+    // Show Nutrition Chart
+    nutritionChart.classList.remove('hidden')
+    nothingSelected.classList.add('hidden')
+
+    // chart Functionalities
+    const oldChart = Chart.getChart(ctx)
+    if (typeof oldChart !== 'undefined') {
+      oldChart.destroy()
+    }
+
+    const chartData = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Protein', 'Carbohydrate', 'Fat'],
+        datasets: [
+          {
+            label: '%',
+            data: [
+              data?.caloriesFromProtein,
+              data?.caloriesFromCarbohydrate,
+              data?.caloriesFromFat,
+            ],
+            backgroundColor: [
+              'rgba(0, 255, 255, 1)',
+              'rgba(255, 214, 0, 1)',
+              'rgba(240, 3, 125, 0.8)',
+            ],
+            borderColor: [
+              'rgba(240, 157, 0, 0)',
+              'rgba(240, 157, 0, 0)',
+              'rgba(240, 157, 0, 0)',
+            ],
+            borderWidth: 4,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    })
+  }
 </script>
+
+<!-- <a href="#" class="text-blue-600 hover:text-blue-900">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="w-5 h-5"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+    />
+  </svg>
+</a>
+<a href="#" class="text-blue-600 hover:text-blue-900">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="w-5 h-5"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+    />
+  </svg>
+</a> -->
