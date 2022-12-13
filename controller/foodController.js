@@ -13,7 +13,7 @@ const Recepies = require('../models/Recepies')
  */
 const create = async (req, res, next) => {
   try {
-    let newData = new Food(req.body)
+    let newData = new Recepies(req.body)
     await newData.save()
     res.status(200).json(newData)
   } catch (error) {
@@ -75,7 +75,7 @@ const update = async (req, res, next) => {
     let options = {
       new: true,
     }
-    let updatedData = await Food.findOneAndUpdate(query, req.body, options)
+    let updatedData = await Recepies.findOneAndUpdate(query, req.body, options)
     res.status(200).json(updatedData)
   } catch (error) {
     console.log({ error })
@@ -92,7 +92,7 @@ const update = async (req, res, next) => {
 const deleteSingle = async (req, res, next) => {
   try {
     let query = { _id: req.params.id }
-    let result = await Food.findByIdAndDelete(query)
+    let result = await Recepies.findByIdAndDelete(query)
     res.status(200).json(result)
   } catch (error) {
     next(createError(500, 'Failed to delete data!'))

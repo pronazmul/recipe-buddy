@@ -70,7 +70,10 @@
         if (response.status === 200) {
           showToast('Login Success!')
           //Redirect To add Food
-          return document.location.replace('/addFood')
+
+          setTimeout(() => {
+            window.location.replace('/addFood')
+          }, 500)
         } else {
           return showToast('Authentication Failed!')
         }

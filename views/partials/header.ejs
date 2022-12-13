@@ -16,6 +16,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./stylesheets/style.css" />
   </head>
 
   <body>
@@ -105,7 +106,10 @@
         method: 'DELETE',
       })
       showToast('Logout Success')
-      return document.location.replace('/login')
+
+      setTimeout(() => {
+        return document.location.replace('/login')
+      }, 1000)
     } catch (error) {
       return showToast(error.message)
     }
