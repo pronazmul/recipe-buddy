@@ -1,7 +1,7 @@
 <%- include('./partials/header.ejs') %>
 <!-- component -->
-<div class="flex items-center justify-center h-[90vh]">
-  <div class="md:grid md:grid-cols-3 md:gap-6">
+<div class="flex items-center justify-center h-[90vh] overflow-scroll">
+  <div class="md:grid md:grid-cols-4 md:gap-6">
     <div class="md:col-span-1">
       <div class="px-4 sm:px-0 flex flex-col justify-center h-full">
         <h1
@@ -13,80 +13,89 @@
         <img class="w-28" src="./images/logo.png" alt="" />
       </div>
     </div>
-    <div class="mt-5 md:col-span-2 md:mt-0">
-      <form id="addFood" name="addFood" onsubmit="handleAddFood(event)">
-        <div class="overflow-hidden shadow sm:rounded-md">
+    <div class="mt-5 md:col-span-3 md:mt-0">
+      <form id="addFood">
+        <div class="shadow sm:rounded-md mt-12">
           <div class="bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-6 gap-6">
-              <div class="col-span-6 sm:col-span-3 space-y-2">
+              <div class="col-span-2 space-y-2">
                 <label
                   for="name"
                   class="block text-sm font-medium text-gray-700"
-                  >Food Name</label
+                  >Recipe Name</label
                 >
                 <input
                   type="text"
                   name="name"
                   id="name"
+                  placeholder="Recipe Name"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
 
-              <div class="col-span-6 sm:col-span-3 space-y-2">
+              <div class="col-span-2 space-y-2">
                 <label
-                  for="typicalValueUnit"
+                  for="unit"
                   class="block text-sm font-medium text-gray-700"
-                  >Unit Name</label
+                  >Recipe Unit</label
                 >
                 <input
                   type="text"
-                  name="typicalValueUnit"
-                  id="typicalValueUnit"
+                  name="unit"
+                  id="unit"
+                  placeholder="tblspoon, cup, pkt etc"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
 
-              <div class="col-span-6 sm:col-span-3 space-y-2">
+              <div class="col-span-2 space-y-2">
                 <label
-                  for="typicalValue"
+                  for="weight"
                   class="block text-sm font-medium text-gray-700"
-                  >Typical Value Per Unit</label
+                  >Recipe Weight</label
                 >
                 <input
                   type="text"
-                  name="typicalValue"
-                  id="typicalValue"
+                  name="weight"
+                  id="weight"
+                  value="0.0"
+                  placeholder="gram"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
 
-              <div class="col-span-6 sm:col-span-3 space-y-2">
+              <div class="col-span-2 space-y-2">
                 <label
-                  for="carbs"
+                  for="category"
                   class="block text-sm font-medium text-gray-700"
-                  >Carbs</label
+                  >Category</label
                 >
                 <input
                   type="text"
-                  name="carbs"
-                  id="carbs"
+                  name="category"
+                  id="category"
+                  placeholder="Vegetables, Meat, Beverages, Desserts etc"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
 
-              <div class="col-span-6 sm:col-span-3 space-y-2">
-                <label for="fat" class="block text-sm font-medium text-gray-700"
-                  >Fat</label
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="calories"
+                  class="block text-sm font-medium text-gray-700"
+                  >Calories</label
                 >
                 <input
                   type="text"
-                  name="fat"
-                  id="fat"
+                  name="calories"
+                  id="calories"
+                  value="0.0"
+                  placeholder="Total Calories"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
 
-              <div class="col-span-6 sm:col-span-3 space-y-2">
+              <div class="col-span-2 space-y-2">
                 <label
                   for="protein"
                   class="block text-sm font-medium text-gray-700"
@@ -96,34 +105,143 @@
                   type="text"
                   name="protein"
                   id="protein"
+                  value="0.0"
+                  placeholder="Protein"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
 
-              <div class="col-span-6 sm:col-span-3 space-y-2">
-                <label
-                  for="salt"
-                  class="block text-sm font-medium text-gray-700"
-                  >Salt</label
+              <div class="col-span-2 space-y-2">
+                <label for="fat" class="block text-sm font-medium text-gray-700"
+                  >Fat</label
                 >
                 <input
                   type="text"
-                  name="salt"
-                  id="salt"
+                  name="fat"
+                  id="fat"
+                  value="0.0"
+                  placeholder="Fat"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
 
-              <div class="col-span-6 sm:col-span-3 space-y-2">
+              <div class="col-span-2 space-y-2">
                 <label
-                  for="sugar"
+                  for="carbohydrate"
                   class="block text-sm font-medium text-gray-700"
-                  >Sugar</label
+                  >Carbohydrate</label
                 >
                 <input
                   type="text"
-                  name="sugar"
-                  id="sugar"
+                  name="carbohydrate"
+                  id="carbohydrate"
+                  value="0.0"
+                  placeholder="Total Carbohydrate"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="cholesterol"
+                  class="block text-sm font-medium text-gray-700"
+                  >Cholesterol</label
+                >
+                <input
+                  type="text"
+                  name="cholesterol"
+                  id="cholesterol"
+                  value="0.0"
+                  placeholder="Colesterol"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="sugars"
+                  class="block text-sm font-medium text-gray-700"
+                  >Sugars</label
+                >
+                <input
+                  type="text"
+                  name="sugars"
+                  id="sugars"
+                  value="0.0"
+                  placeholder="Sugars"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="water"
+                  class="block text-sm font-medium text-gray-700"
+                  >Water</label
+                >
+                <input
+                  type="text"
+                  name="water"
+                  id="water"
+                  placeholder="Water"
+                  value="0.0"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="caloriesFromProtein"
+                  class="block text-sm font-medium text-gray-700"
+                  >Calories From Protein %</label
+                >
+                <input
+                  type="text"
+                  name="caloriesFromProtein"
+                  id="caloriesFromProtein"
+                  value="0.0"
+                  placeholder="Calories From Protein"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="caloriesFromFat"
+                  class="block text-sm font-medium text-gray-700"
+                  >Calories From Fat %</label
+                >
+                <input
+                  type="text"
+                  name="caloriesFromFat"
+                  id="caloriesFromFat"
+                  value="0.0"
+                  placeholder="Calories from Fat"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="caloriesFromCarbohydrate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Calories From Carbohydrate %</label
+                >
+                <input
+                  type="text"
+                  name="caloriesFromCarbohydrate"
+                  id="caloriesFromCarbohydrate"
+                  value="0.0"
+                  placeholder="Calories From Carbohydrate"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="energy"
+                  class="block text-sm font-medium text-gray-700"
+                  >Energy <span class="text-xs">kj</span></label
+                >
+                <input
+                  type="text"
+                  name="energy"
+                  id="energy"
+                  value="0.0"
+                  placeholder="Energy in kj"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
@@ -150,58 +268,34 @@
       duration: 1000,
     }).showToast()
   }
-  async function handleAddFood(event) {
-    event.preventDefault()
-    let name = document.forms['addFood']['name'].value
-    let typicalValueUnit = document.forms['addFood']['typicalValueUnit'].value
-    let typicalValue = document.forms['addFood']['typicalValue'].value
-    let carbs = document.forms['addFood']['carbs'].value
-    let fat = document.forms['addFood']['fat'].value
-    let protein = document.forms['addFood']['protein'].value
-    let salt = document.forms['addFood']['salt'].value
-    let sugar = document.forms['addFood']['sugar'].value
 
-    if (!name.length) {
-      return showToast('Food name is Rquired!')
-    } else if (!typicalValueUnit.length) {
-      return showToast('Typical value Unit Name is Rquired!')
-    } else if (!typicalValue.length || isNaN(typicalValue)) {
-      return showToast('Typical Value is Rquired && Should Be number')
-    } else if (!carbs.length || isNaN(carbs)) {
-      return showToast('Carbs is Rquired && Should Be number')
-    } else if (!fat.length || isNaN(fat)) {
-      return showToast('Fat is Rquired && Should Be number')
-    } else if (!protein.length || isNaN(protein)) {
-      return showToast('Protein is Rquired && Should Be number')
-    } else if (!salt.length || isNaN(salt)) {
-      return showToast('Salt is Rquired && Should Be number')
-    } else if (!sugar.length || isNaN(sugar)) {
-      return showToast('Sugar is Rquired && Should Be number')
-    } else {
-      try {
-        const data = {
-          name,
-          typicalValueUnit,
-          typicalValue,
-          carbs,
-          fat,
-          protein,
-          salt,
-          sugar,
-        }
-        const rawResponse = await fetch('/food', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        })
-        const content = await rawResponse.json()
-        return showToast('Food Added Successfully')
-      } catch (error) {
-        return showToast(error.message)
+  const addFoodFrom = document.getElementById('addFood')
+  addFoodFrom.addEventListener('submit', handleAddFood)
+
+  async function handleAddFood(e) {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const data = Object.fromEntries(formData)
+
+    try {
+      const rawResponse = await fetch('/food', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      const content = await rawResponse.json()
+
+      if (rawResponse.status === 200) {
+        return showToast('Recipe Added Successfully')
+      } else {
+        return showToast(content.message)
       }
+    } catch (error) {
+      console.log({ error })
+      return showToast(error.message)
     }
   }
 </script>

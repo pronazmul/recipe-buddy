@@ -1,34 +1,36 @@
 const yup = require('yup')
 
 const createFoodSchema = yup.object().shape({
-  name: yup.string().required('Food name is Required!'),
-  typicalValueUnit: yup
-    .string()
-    .required('Typical Value Unit Name is Required!'),
-  typicalValue: yup
+  water: yup.number().optional().typeError('Water Must Be Number'),
+  calories: yup.number().optional().typeError('Calories Must Be Number'),
+  protein: yup.number().optional().typeError('Protein Must Be Number'),
+  fat: yup.number().optional().typeError('Fat Must Be Number'),
+  carbohydrate: yup
     .number()
-    .required('Typical Value is Required!')
-    .typeError('Typical Value Must Be Number'),
-  carbs: yup
+    .optional()
+    .typeError('Carbohydrate Must Be Number'),
+  cholesterol: yup.number().optional().typeError('Cholesterol Must Be Number'),
+  sugars: yup.number().optional().typeError('Sugars Must Be Number'),
+  caloriesFromProtein: yup
     .number()
-    .required('Carbs is Required!')
-    .typeError('Carbs Must Be Number'),
-  fat: yup
+    .optional()
+    .typeError('Calories From Protein Must Be Number'),
+  caloriesFromFat: yup
     .number()
-    .required('Fat is Required!')
-    .typeError('Fat Must Be Number'),
-  protein: yup
+    .optional()
+    .typeError('Calories From Fat Must Be Number'),
+  caloriesFromCarbohydrate: yup
     .number()
-    .required('Protein is Required!')
-    .typeError('Protein Must Be Number'),
-  salt: yup
+    .optional()
+    .typeError('Calories From Carbohydrate Must Be Number'),
+  energy: yup.number().optional().typeError('Energy Must be Numbers'),
+  category: yup.string().required('Category is Required!'),
+  weight: yup
     .number()
-    .required('Salt is Required!')
-    .typeError('Salt Must Be Number'),
-  sugar: yup
-    .number()
-    .required('Sugar is Required!')
-    .typeError('Sugar Must Be Number'),
+    .required('Weight is Required!')
+    .typeError('Weight Must Be Number'),
+  unit: yup.string().required('Recipe Unit is Required!'),
+  name: yup.string().required('Recipe name is Required!'),
 })
 
 const updateFoodSchema = yup.object().shape({

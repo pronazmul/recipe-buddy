@@ -1,0 +1,62 @@
+<div class="modal-wrapper" id="updateRecipeModal">
+  <div class="modal">
+    <div class="w-64 p-4 m-auto bg-white shadow-lg rounded-2xl">
+      <div class="w-full h-full text-center">
+        <div class="flex flex-col justify-between h-full">
+          <p class="mt-4 text-xl font-bold text-gray-800">Update Recipe</p>
+
+          <div class="flex items-center justify-between w-full gap-4 mt-8">
+            <button
+              onclick="updateFood()"
+              type="button"
+              class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            >
+              Update
+            </button>
+            <button
+              onclick="closeUpdateModal()"
+              type="button"
+              class="py-2 px-4 bg-white hover:bg-gray-100 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-indigo-500 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showToast(msg) {
+    Toastify({
+      text: msg,
+      duration: 1000,
+    }).showToast()
+  }
+
+  const updateModal = document.querySelector('#updateRecipeModal')
+  let updateID
+
+  const closeUpdateModal = () => (updateModal.style.display = 'none')
+
+  const openUpdateModal = (id) => {
+    updateModal.style.display = 'block'
+    updateID = id
+  }
+
+  async function updateFood() {
+    try {
+      showToast('Recipe Updated!')
+
+      setTimeout(() => {
+        closeUpdateModal()
+      }, 500)
+    } catch (error) {
+      showToast('Failed To Update Recipe!')
+      setTimeout(() => {
+        closeUpdateModal()
+      }, 500)
+    }
+  }
+</script>

@@ -20,5 +20,3 @@ const removeData = (key) => {
 const destroyData = (key) => {
   localStorage.removeItem(getDataKey())
 }
-
-export { getData, addData, removeData, destroyData }
