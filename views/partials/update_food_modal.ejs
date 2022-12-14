@@ -1,26 +1,255 @@
 <div class="modal-wrapper" id="updateRecipeModal">
   <div class="modal">
-    <div class="w-64 p-4 m-auto bg-white shadow-lg rounded-2xl">
+    <div class="w-[70vw] p-4 m-auto bg-white shadow-lg rounded-2xl">
       <div class="w-full h-full text-center">
         <div class="flex flex-col justify-between h-full">
-          <p class="mt-4 text-xl font-bold text-gray-800">Update Recipe</p>
+          <p class="mb-4 text-xl font-bold text-gray-800">Update Recipe</p>
+          <form id="updateRecipeForm">
+            <div class="grid grid-cols-8 gap-6">
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-700"
+                  >Recipe Name</label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Recipe Name"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
 
-          <div class="flex items-center justify-between w-full gap-4 mt-8">
-            <button
-              onclick="updateFood()"
-              type="button"
-              class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-            >
-              Update
-            </button>
-            <button
-              onclick="closeUpdateModal()"
-              type="button"
-              class="py-2 px-4 bg-white hover:bg-gray-100 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-indigo-500 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-            >
-              Cancel
-            </button>
-          </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="unit"
+                  class="block text-sm font-medium text-gray-700"
+                  >Recipe Unit</label
+                >
+                <input
+                  type="text"
+                  name="unit"
+                  id="unit"
+                  placeholder="tblspoon, cup, pkt etc"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="weight"
+                  class="block text-sm font-medium text-gray-700"
+                  >Recipe Weight</label
+                >
+                <input
+                  type="text"
+                  name="weight"
+                  id="weight"
+                  value="0.0"
+                  placeholder="gram"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="category"
+                  class="block text-sm font-medium text-gray-700"
+                  >Category</label
+                >
+                <input
+                  type="text"
+                  name="category"
+                  id="category"
+                  placeholder="Vegetables, Meat, Beverages, Desserts etc"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="calories"
+                  class="block text-sm font-medium text-gray-700"
+                  >Calories</label
+                >
+                <input
+                  type="text"
+                  name="calories"
+                  id="calories"
+                  value="0.0"
+                  placeholder="Total Calories"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="protein"
+                  class="block text-sm font-medium text-gray-700"
+                  >Protein</label
+                >
+                <input
+                  type="text"
+                  name="protein"
+                  id="protein"
+                  value="0.0"
+                  placeholder="Protein"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-2 space-y-2">
+                <label for="fat" class="block text-sm font-medium text-gray-700"
+                  >Fat</label
+                >
+                <input
+                  type="text"
+                  name="fat"
+                  id="fat"
+                  value="0.0"
+                  placeholder="Fat"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="carbohydrate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Carbohydrate</label
+                >
+                <input
+                  type="text"
+                  name="carbohydrate"
+                  id="carbohydrate"
+                  value="0.0"
+                  placeholder="Total Carbohydrate"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="cholesterol"
+                  class="block text-sm font-medium text-gray-700"
+                  >Cholesterol</label
+                >
+                <input
+                  type="text"
+                  name="cholesterol"
+                  id="cholesterol"
+                  value="0.0"
+                  placeholder="Colesterol"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="sugars"
+                  class="block text-sm font-medium text-gray-700"
+                  >Sugars</label
+                >
+                <input
+                  type="text"
+                  name="sugars"
+                  id="sugars"
+                  value="0.0"
+                  placeholder="Sugars"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="water"
+                  class="block text-sm font-medium text-gray-700"
+                  >Water</label
+                >
+                <input
+                  type="text"
+                  name="water"
+                  id="water"
+                  placeholder="Water"
+                  value="0.0"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="caloriesFromProtein"
+                  class="block text-sm font-medium text-gray-700"
+                  >Calories From Protein %</label
+                >
+                <input
+                  type="text"
+                  name="caloriesFromProtein"
+                  id="caloriesFromProtein"
+                  value="0.0"
+                  placeholder="Calories From Protein"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="caloriesFromFat"
+                  class="block text-sm font-medium text-gray-700"
+                  >Calories From Fat %</label
+                >
+                <input
+                  type="text"
+                  name="caloriesFromFat"
+                  id="caloriesFromFat"
+                  value="0.0"
+                  placeholder="Calories from Fat"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="caloriesFromCarbohydrate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Calories From Carbohydrate %</label
+                >
+                <input
+                  type="text"
+                  name="caloriesFromCarbohydrate"
+                  id="caloriesFromCarbohydrate"
+                  value="0.0"
+                  placeholder="Calories From Carbohydrate"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="energy"
+                  class="block text-sm font-medium text-gray-700"
+                  >Energy <span class="text-xs">kj</span></label
+                >
+                <input
+                  type="text"
+                  name="energy"
+                  id="energy"
+                  value="0.0"
+                  placeholder="Energy in kj"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+            </div>
+            <div class="flex items-center justify-between w-full gap-4 mt-8">
+              <button
+                type="submit"
+                class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                Update
+              </button>
+              <button
+                onclick="closeUpdateModal()"
+                type="button"
+                class="py-2 px-4 bg-white hover:bg-gray-100 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-indigo-500 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -28,30 +257,61 @@
 </div>
 
 <script>
+  // Toast Notifications
   function showToast(msg) {
     Toastify({
       text: msg,
       duration: 1000,
     }).showToast()
   }
-
+  // DOM Manipulations
   const updateModal = document.querySelector('#updateRecipeModal')
-  let updateID
+  const updateRecipeForm = document.getElementById('updateRecipeForm')
+  updateRecipeForm.addEventListener('submit', handleUpdateFood)
+  let update_id
 
+  // MOdal Functionalitites
   const closeUpdateModal = () => (updateModal.style.display = 'none')
 
-  const openUpdateModal = (id) => {
+  // Open Modal, Fetch recipe by Id and add those in form Fields
+  const openUpdateModal = async (id) => {
     updateModal.style.display = 'block'
-    updateID = id
+    update_id = id
+    const response = await fetch(`/food/${id}`)
+    const data = await response.json()
+
+    // Make Object as Entities and Input to each input field
+    Object.entries(data).forEach(([k, v]) => {
+      updateRecipeForm[k].value = v
+    })
   }
 
-  async function updateFood() {
-    try {
-      showToast('Recipe Updated!')
+  // Update Recipe Handler
+  async function handleUpdateFood(e) {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const data = Object.fromEntries(formData)
 
-      setTimeout(() => {
-        closeUpdateModal()
-      }, 500)
+    try {
+      const rawResponse = await fetch(`/food/${update_id}`, {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      const content = await rawResponse.json()
+
+      if (rawResponse.status === 200) {
+        setTimeout(() => {
+          closeUpdateModal()
+          window.location.reload()
+        }, 500)
+        return showToast('Recipe Updated!')
+      } else {
+        return showToast(content.message)
+      }
     } catch (error) {
       showToast('Failed To Update Recipe!')
       setTimeout(() => {
