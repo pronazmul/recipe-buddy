@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 let uniqueValidator = require('mongoose-unique-validator')
+const bcrypt = require('bcrypt')
 
 const peopleSchema = mongoose.Schema(
   {
@@ -29,12 +30,17 @@ const peopleSchema = mongoose.Schema(
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 )
 
 // Integrate MOngoose Unique Validoator Plugin
 peopleSchema.plugin(uniqueValidator, {
   message: '{VALUE} Already Exists!',
+})
+
+peopleSchema.pre('save', async function (next) {
+  this.password = await bcrypt.hash(this.password, 10)
 })
 
 const People = mongoose.model('People', peopleSchema)

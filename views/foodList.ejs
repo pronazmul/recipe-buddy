@@ -144,6 +144,8 @@
                           />
                         </svg>
                       </a>
+                      <%if(loggedInUser?._id && loggedInUser?._id ==
+                      food.user){%>
                       <a
                         onclick="openUpdateModal('<%= food._id %>')"
                         href="#"
@@ -164,6 +166,7 @@
                           />
                         </svg>
                       </a>
+
                       <a
                         onclick="openDeleteModal('<%=food._id%>')"
                         href="#"
@@ -184,6 +187,8 @@
                           />
                         </svg>
                       </a>
+
+                      <%}%>
                     </td>
                   </tr>
                   <% }) %> <% } %>
@@ -231,7 +236,10 @@
           </p>
           <p class="flex text-sm justify-between border-b border-black">
             <span class="font-bold" id="water">Water 810mg</span
-            ><span>34%</span>
+            ><span>24%</span>
+          </p>
+          <p class="flex text-sm justify-between border-b border-black">
+            <span class="font-bold" id="salt">Salt 2mg</span><span>0.02%</span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
             <span class="font-bold" id="carbohydrate"
@@ -244,13 +252,6 @@
           </p>
           <p class="flex text-sm justify-between border-b-4 border-black">
             <span class="font-bold" id="energy">Energy 4.3kj</span><span></span>
-          </p>
-          <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Vitamin A</span
-            ><span id="vitamin">7.9%</span>
-          </p>
-          <p class="flex text-sm justify-between border-b border-black">
-            <span class="font-bold">Vitamin C</span><span>37%</span>
           </p>
           <p class="flex text-sm justify-between border-b border-black">
             <span class="font-bold">Calcium</span><span>3.6%</span>
@@ -266,7 +267,7 @@
         <div
           class="w-full px-4 py-5 mb-2 bg-white border rounded-md shadow sm:px-6"
         >
-          <canvas id="myChart" width="250" height="250"></canvas>
+          <canvas id="myChart" class="w-full"></canvas>
         </div>
       </div>
       <!-- Nothing Selected -->
@@ -299,10 +300,10 @@
   let fatSpan = document.getElementById('fat')
   let cholesterolSpan = document.getElementById('cholesterol')
   let waterSpan = document.getElementById('water')
+  let saltSpan = document.getElementById('salt')
   let carbohydrateSpan = document.getElementById('carbohydrate')
   let proteinSpan = document.getElementById('protein')
   let energySpan = document.getElementById('energy')
-  let vitaminSpan = document.getElementById('vitamin')
 
   const ctx = document.getElementById('myChart').getContext('2d')
 
@@ -449,10 +450,10 @@
     fatSpan.innerHTML = `Total Fat ${data?.fat}g`
     cholesterolSpan.innerHTML = `Cholesterol ${data?.cholesterol}m.g`
     waterSpan.innerHTML = `Water ${data?.water}m.g`
+    saltSpan.innerHTML = `Salt ${data?.salt ?? 0.0}m.g`
     carbohydrateSpan.innerHTML = `Total Carbohydrates ${data?.carbohydrate}g`
     proteinSpan.innerHTML = `Protein ${data?.protein}g`
     energySpan.innerHTML = `Total Energy ${data?.energy}kj`
-    vitaminSpan.innerHTML = `${data?.vitaminC}%`
 
     // Show Nutrition Chart
     nutritionChart.classList.remove('hidden')

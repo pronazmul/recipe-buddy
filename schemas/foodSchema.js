@@ -11,6 +11,7 @@ const createFoodSchema = yup.object().shape({
     .typeError('Carbohydrate Must Be Number'),
   cholesterol: yup.number().optional().typeError('Cholesterol Must Be Number'),
   sugars: yup.number().optional().typeError('Sugars Must Be Number'),
+  salt: yup.number().optional().typeError('Salt Must Be Number'),
   caloriesFromProtein: yup
     .number()
     .optional()
@@ -44,6 +45,7 @@ const updateFoodSchema = yup.object().shape({
     .typeError('Carbohydrate Must Be Number'),
   cholesterol: yup.number().optional().typeError('Cholesterol Must Be Number'),
   sugars: yup.number().optional().typeError('Sugars Must Be Number'),
+  salt: yup.number().optional().typeError('Salt Must Be Number'),
   caloriesFromProtein: yup
     .number()
     .optional()

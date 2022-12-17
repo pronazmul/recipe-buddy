@@ -15,6 +15,7 @@ const {
 const authRouter = require('./router/authRouter')
 const foodRouter = require('./router/foodRouter')
 const publicRouter = require('./router/publicRouter')
+const { mongooseConnection } = require('./config/db')
 
 // Express Setup:
 const app = express()
@@ -24,13 +25,7 @@ dotenv.config()
 app.locals.moment = moment
 
 // Database Connection
-mongoose
-  .connect(process.env.MONGO_ATLAS, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('Successfully Connected To Database!'))
-  .catch((error) => console.log(error))
+mongooseConnection()
 
 //   Request Parser
 app.use(morgan('dev'))

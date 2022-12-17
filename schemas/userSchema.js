@@ -9,7 +9,10 @@ const registrationSchema = yup.object().shape({
     .matches(email, 'Invalid Email Address!')
     .required('Email is Required!'),
   username: yup.string().required('User Name is Required!'),
-  password: yup.string().required('Password Is Required!'),
+  password: yup
+    .string()
+    .required('Password Is Required!')
+    .min(6, 'Password Should be minimum 6 character long'),
 })
 
 const loginSchema = yup.object().shape({

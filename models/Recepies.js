@@ -3,6 +3,11 @@ let uniqueValidator = require('mongoose-unique-validator')
 
 const recepieSchema = mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'People',
+    },
     name: {
       type: String,
       trim: true,
@@ -19,6 +24,7 @@ const recepieSchema = mongoose.Schema(
     energy: Number,
     cholesterol: Number,
     sugars: Number,
+    salt: Number,
     caloriesFromProtein: Number,
     caloriesFromFat: Number,
     caloriesFromCarbohydrate: Number,
@@ -26,6 +32,7 @@ const recepieSchema = mongoose.Schema(
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 )
 

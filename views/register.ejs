@@ -101,7 +101,11 @@
         })
         let result = await response.json()
         if (response.status === 200) {
-          return showToast('User Registration Success!')
+          showToast('User Registration Success!')
+
+          setTimeout(() => {
+            window.location.replace('/login')
+          }, 500)
         } else {
           return showToast(result.message)
         }

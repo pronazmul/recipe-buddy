@@ -20,7 +20,7 @@ const {
 const decorateHtmlResponse = require('../middlewares/common/decorateHtmlResponse')
 
 //Home Page
-router.get('/', decorateHtmlResponse('Recipe Buddy'), checkLogin, getHomePage)
+router.get('/', decorateHtmlResponse('Home'), checkLogin, getHomePage)
 
 //About Page
 router.get('/about', decorateHtmlResponse('About'), checkLogin, getAboutPage)

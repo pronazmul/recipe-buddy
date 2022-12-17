@@ -18,7 +18,7 @@
         <div class="shadow sm:rounded-md mt-12">
           <div class="bg-white px-4 py-5 sm:p-6">
             <div class="grid grid-cols-6 gap-6">
-              <div class="col-span-2 space-y-2">
+              <div class="col-span-4 space-y-2">
                 <label
                   for="name"
                   class="block text-sm font-medium text-gray-700"
@@ -32,8 +32,21 @@
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
-
               <div class="col-span-2 space-y-2">
+                <label
+                  for="category"
+                  class="block text-sm font-medium text-gray-700"
+                  >Category</label
+                >
+                <input
+                  type="text"
+                  name="category"
+                  id="category"
+                  placeholder="Vegetables, Meat, Beverages, Desserts etc"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-4 space-y-2">
                 <label
                   for="unit"
                   class="block text-sm font-medium text-gray-700"
@@ -60,21 +73,6 @@
                   id="weight"
                   value="0.0"
                   placeholder="gram"
-                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
-                />
-              </div>
-
-              <div class="col-span-2 space-y-2">
-                <label
-                  for="category"
-                  class="block text-sm font-medium text-gray-700"
-                  >Category</label
-                >
-                <input
-                  type="text"
-                  name="category"
-                  id="category"
-                  placeholder="Vegetables, Meat, Beverages, Desserts etc"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>
@@ -167,6 +165,21 @@
                   id="sugars"
                   value="0.0"
                   placeholder="Sugars"
+                  class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
+                />
+              </div>
+              <div class="col-span-2 space-y-2">
+                <label
+                  for="salt"
+                  class="block text-sm font-medium text-gray-700"
+                  >Salt</label
+                >
+                <input
+                  type="text"
+                  name="salt"
+                  id="salt"
+                  value="0.0"
+                  placeholder="Salt"
                   class="border rounded-[4px] p-2 hover:outline-none focus:outline-none hover:border-yellow-500 w-full"
                 />
               </div>

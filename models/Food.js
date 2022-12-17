@@ -41,6 +41,7 @@ const foodSchema = mongoose.Schema(
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 )
 
