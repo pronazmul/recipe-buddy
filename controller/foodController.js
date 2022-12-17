@@ -57,6 +57,8 @@ const getAll = async (req, res, next) => {
     let projection = {}
     const options = { sort: { id: 1 } }
     const data = await Recepies.find(query, projection, options)
+    console.log(req.user)
+    // res.set('x-total-count', totalCount)
     res.status(200).json(data)
   } catch (error) {
     next(createError(500, 'Failed to fetch Data!'))

@@ -17,17 +17,11 @@ const checkLogin = (req, res, next) => {
       if (res.locals.html) {
         res.locals.loggedInUser = decoded
       }
+      res.set('user', decoded._id)
       next()
     } catch (error) {}
   } else {
     next()
-    // if (res.locals.html) {
-    //   res.redirect('/login')
-    // } else {
-    //   res.status(401).json({
-    //     error: 'Authentication Failure!',
-    //   })
-    // }
   }
 }
 
