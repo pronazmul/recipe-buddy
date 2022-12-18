@@ -8,8 +8,9 @@ const {
   getAboutPage,
   getLoginPage,
   getRegisterPage,
-  getFoodList,
+  searchFoodPage,
   addFood,
+  foodList,
 } = require('../controller/publicController')
 
 const {
@@ -43,15 +44,18 @@ router.get(
   getRegisterPage
 )
 
-//Get Food List Page
+//Render Search Food Page
 router.get(
   '/searchfood',
-  decorateHtmlResponse('Food List'),
+  decorateHtmlResponse('Search Food'),
   checkLogin,
-  getFoodList
+  searchFoodPage
 )
 
-//Add Food List Page
+//Render Food List Page
+router.get('/foodList', decorateHtmlResponse('Food List'), checkLogin, foodList)
+
+//Redner Add Food List Page
 router.get(
   '/addFood',
   decorateHtmlResponse('Add Food'),

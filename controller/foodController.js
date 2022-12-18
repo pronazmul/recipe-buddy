@@ -36,7 +36,7 @@ const create = async (req, res, next) => {
 const getSingle = async (req, res, next) => {
   try {
     let query = { _id: req.params.id }
-    let projection = { _id: 0, vitaminC: 0 }
+    let projection = { vitaminC: 0 }
     const data = await Recepies.findOne(query, projection)
     res.status(200).json(data)
   } catch (error) {

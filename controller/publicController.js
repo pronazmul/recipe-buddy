@@ -28,8 +28,17 @@ const getRegisterPage = (req, res, next) => {
   res.render('register')
 }
 
+// Render Search food Page
+const searchFoodPage = async (req, res, next) => {
+  const filter = req.query.filter
+  const query = filter ? { name: { $regex: filter, $options: 'i' } } : {}
+  const foods = await Recepies.find(query)
+  res.locals.data = foods
+  res.render('searchFood')
+}
+
 // Render Food List page
-const getFoodList = async (req, res, next) => {
+const foodList = async (req, res, next) => {
   const filter = req.query.filter
   const query = filter ? { name: { $regex: filter, $options: 'i' } } : {}
   const foods = await Recepies.find(query)
@@ -48,6 +57,7 @@ module.exports = {
   getAboutPage,
   getLoginPage,
   getRegisterPage,
-  getFoodList,
+  searchFoodPage,
   addFood,
+  foodList,
 }
