@@ -17,7 +17,7 @@ const { createFoodSchema, updateFoodSchema } = require('../schemas/foodSchema')
 router.get('/', checkLogin, getAll)
 
 router.get('/:id', getSingle)
-router.post('/', validateRequest(createFoodSchema), create)
+router.post('/', checkLogin, validateRequest(createFoodSchema), create)
 router.patch('/:id', validateRequest(updateFoodSchema), update)
 router.delete('/:id', deleteSingle)
 

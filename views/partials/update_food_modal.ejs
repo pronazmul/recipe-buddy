@@ -295,8 +295,10 @@
     const response = await fetch(`/food/${id}`)
     const data = await response.json()
 
+    const { _id, user, updatedAt, createdAt, ...rest } = data
+
     // Make Object as Entities and Input to each input field
-    Object.entries(data).forEach(([k, v]) => {
+    Object.entries(rest).forEach(([k, v]) => {
       updateRecipeForm[k].value = v
     })
   }

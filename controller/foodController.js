@@ -13,7 +13,7 @@ const Recepies = require('../models/Recepies')
  */
 const create = async (req, res, next) => {
   try {
-    let newData = new Recepies(req.body)
+    let newData = new Recepies({ ...req.body, user: req?.user?._id })
     await newData.save()
     res.status(200).json(newData)
   } catch (error) {
