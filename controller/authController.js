@@ -60,13 +60,7 @@ const login = async (req, res, next) => {
 //Register:
 const register = async (req, res, next) => {
   try {
-    let newUser
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-
-    newUser = new User({
-      ...req.body,
-      password: hashedPassword,
-    })
+    const newUser = new User(req.body)
     await newUser.save()
     res.status(200).json(newUser)
   } catch (error) {

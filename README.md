@@ -16,7 +16,7 @@ Ricipe Buddy we help people manage your diet by displaying nutritional facts suc
 - Update Food Feature (This feature is added dynamically, Only logged in user can see update and delete icon also only food creator can update and delete food, If Clicked delete button Are sure Alert Modal)
 - List Food page (Display all Food LIst, Can add one or more food as meal, If select same food multiple time will increase quantity, also can increase/decrease quantity, Delete Food from meal, All food will be calculated in nutrition Chart)
 
-## Pages with Features:
+## APIs:
 
 - `http://domain/food` will fetch all food form database in json Format.
 - Implement Data Validation using YUP Schema while creating and updating food items.
@@ -94,6 +94,10 @@ yup.object().shape({
   name: yup.string().required('Recipe name is Required!'),
 })
 ```
+
+## Data Stored in Database in Hash Format
+
+<img width="572" alt="hashed password" src="https://user-images.githubusercontent.com/58470993/208449856-49fb4efb-67f7-4898-9590-8f190ac0662f.png">
 
 ## Database Schema & ER Diagram
 
