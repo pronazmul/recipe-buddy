@@ -1,3 +1,4 @@
+<!-- Inclode Navigation Bar for each Page -->
 <%- include('./partials/header.ejs') %>
 <!-- component -->
 <div class="flex items-center justify-center h-[90vh]">
@@ -39,6 +40,7 @@
 </div>
 
 <script>
+  // Default Function For Toast Message Duraton 1 second
   function showToast(msg) {
     Toastify({
       text: msg,
@@ -46,6 +48,7 @@
     }).showToast()
   }
 
+  // Login Function Hadler
   async function handleLogin(event) {
     event.preventDefault()
     let username = document.forms['login']['username'].value

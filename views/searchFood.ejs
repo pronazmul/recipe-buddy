@@ -1,3 +1,4 @@
+<!-- Inclode Navigation Bar for each Page -->
 <%- include('./partials/header.ejs') %>
 
 <main class="w-full h-[90vh]">
@@ -46,6 +47,7 @@
                     >
                       Recipe
                     </th>
+
                     <th
                       scope="col"
                       class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
@@ -75,6 +77,12 @@
                       class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
                     >
                       Category
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+                    >
+                      Username
                     </th>
                   </tr>
                 </thead>
@@ -111,7 +119,7 @@
     // Add Loader Before Fetch
     tableBody.innerHTML = `
         <tr>
-          <td colspan='6'>
+          <td colspan='7'>
             <div class='w-full flex justify-center items-center my-8'>
             <div class='animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500'></div>
             </div>
@@ -127,7 +135,7 @@
       if (!data.length) {
         tableBody.innerHTML = `
           <tr>
-            <td colspan='6' class="p-4 m-4 text-sm text-red-700 bg-red-100 rounded-lg font-medium text-center">No item Found!</td> 
+            <td colspan='7' class="p-4 m-4 text-sm text-red-700 bg-red-100 rounded-lg font-medium text-center">No item Found!</td> 
           </tr>`
       } else {
         let foodList = ''
@@ -174,6 +182,13 @@
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
                         ${food.category}
+                      </p>
+                    </td>
+                    <td
+                      class="px-5 py-5 text-sm bg-white border-b border-gray-200"
+                    >
+                      <p class="text-gray-900 whitespace-no-wrap">
+                        ${food?.user?.username}
                       </p>
                     </td>
                   </tr>

@@ -63,6 +63,7 @@
 </div>
 
 <script>
+  // Default Toaster Handler
   function showToast(msg) {
     Toastify({
       text: msg,
@@ -70,6 +71,7 @@
     }).showToast()
   }
 
+  // REgistration Handler
   async function handleRegister(event) {
     event.preventDefault()
     let firstName = document.forms['register']['firstName'].value

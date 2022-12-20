@@ -1,3 +1,4 @@
+<!-- Inclode Navigation Bar for each Page -->
 <%- include('./partials/header.ejs') %>
 <!-- component -->
 <div class="flex items-center justify-center h-[90vh] overflow-scroll">
@@ -275,6 +276,7 @@
 </div>
 
 <script>
+  // Toast Notification Fumction
   function showToast(msg) {
     Toastify({
       text: msg,
@@ -282,9 +284,11 @@
     }).showToast()
   }
 
+  // Dom Selections
   const addFoodFrom = document.getElementById('addFood')
   addFoodFrom.addEventListener('submit', handleAddFood)
 
+  // Add Food Hander if Added show success message else show error message
   async function handleAddFood(e) {
     e.preventDefault()
     const formData = new FormData(e.target)

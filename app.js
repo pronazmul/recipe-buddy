@@ -27,7 +27,7 @@ app.locals.moment = moment
 // Database Connection
 mongooseConnection()
 
-//   Request Parser
+//  Request Parser
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
