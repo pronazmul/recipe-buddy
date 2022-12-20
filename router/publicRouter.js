@@ -11,6 +11,7 @@ const {
   searchFoodPage,
   addFood,
   foodList,
+  updateFood,
 } = require('../controller/publicController')
 
 const {
@@ -62,6 +63,15 @@ router.get(
   checkLogin,
   redirectLogout,
   addFood
+)
+
+//Redner Update Food List Page
+router.get(
+  '/updateFood',
+  decorateHtmlResponse('Update Food'),
+  checkLogin,
+  redirectLogout,
+  updateFood
 )
 
 // Module Export:

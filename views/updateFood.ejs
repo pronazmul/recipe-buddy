@@ -5,14 +5,14 @@
     <!-- Food List -->
     <div class="col-span-12">
       <!-- Food List Table -->
-      <div class="container max-w-3/4 px-4 mx-auto sm:px-8">
+      <div class="container w-3/4 px-4 mx-auto sm:px-8">
         <div class="py-8">
           <div class="flex flex-row justify-between w-full mb-1 sm:mb-0">
-            <h2 class="text-2xl leading-tight">Search Food</h2>
+            <h2 class="text-2xl leading-tight">Update Food</h2>
             <div class="text-end">
               <form
                 id="filterForm"
-                onsubmit="searchFood(event)"
+                onsubmit="fetchFood(event)"
                 class="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0"
               >
                 <div class="relative">
@@ -68,17 +68,17 @@
                       scope="col"
                       class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
                     >
-                      Protein
+                      Category
                     </th>
                     <th
                       scope="col"
                       class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
                     >
-                      Category
+                      actions
                     </th>
                   </tr>
                 </thead>
-                <tbody id="foodList"></tbody>
+                <tbody id="updateFoodList"></tbody>
               </table>
             </div>
           </div>
@@ -86,13 +86,15 @@
       </div>
     </div>
   </div>
+  <%- include('./partials/delete_food_modal.ejs') %>
 </main>
+<%- include('./partials/update_food_modal.ejs') %>
 
 <script>
-  //Dom Selections
-  let tableBody = document.getElementById('foodList')
+  // Dom Selections
+  const UpdateTable = document.getElementById('updateFoodList')
 
-  // Toast Message
+  // Custom Function For Toast Message
   function showToast(msg) {
     Toastify({
       text: msg,
@@ -101,15 +103,15 @@
   }
 
   // Fetch Food Intems While DOM loaded
-  document.addEventListener('DOMContentLoaded', searchFood)
+  document.addEventListener('DOMContentLoaded', fetchFood)
 
-  // Filter Food By Food Name
-  async function searchFood(event) {
+  // Filter Food By Name
+  async function fetchFood(event) {
     event.preventDefault()
     let searchInput = document.forms['filterForm']['filter'].value
 
-    // Add Loader Before Fetch
-    tableBody.innerHTML = `
+    // Initally Set Loader Before Fetch
+    UpdateTable.innerHTML = `
         <tr>
           <td colspan='6'>
             <div class='w-full flex justify-center items-center my-8'>
@@ -125,9 +127,9 @@
       const user = response.headers.get('user')
 
       if (!data.length) {
-        tableBody.innerHTML = `
+        UpdateTable.innerHTML = `
           <tr>
-            <td colspan='6' class="p-4 m-4 text-sm text-red-700 bg-red-100 rounded-lg font-medium text-center">No item Found!</td> 
+            <td colspan='6' class="p-4 m-4 text-sm text-red-700 bg-red-100 rounded-lg font-medium text-center">No item Found!</td>
           </tr>`
       } else {
         let foodList = ''
@@ -152,7 +154,7 @@
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        ${food.weight} g
+                        ${food.weight}
                       </p>
                     </td>
                     <td
@@ -166,20 +168,70 @@
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
                     >
                       <p class="text-gray-900 whitespace-no-wrap">
-                        ${food.protein} g
+                        ${food.category}
                       </p>
                     </td>
                     <td
-                      class="px-5 py-5 text-sm bg-white border-b border-gray-200"
+                      class="px-5 py-6 bg-white border-b border-gray-200 flex space-x-2"
                     >
-                      <p class="text-gray-900 whitespace-no-wrap">
-                        ${food.category}
-                      </p>
+                      <a
+                        href="#"
+                        onclick="${
+                          user === food.user && `openUpdateModal('${food._id}')`
+                        }"
+                        class="px-4 py-2 text-base font-semibold text-white rounded-lg shadow-md ${
+                          user === food.user
+                            ? 'bg-green-600 hover:bg-green-700 cursor-pointer'
+                            : 'bg-green-200 cursor-not-allowed'
+                        }"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="w-5 h-5"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                          />
+                        </svg>
+                      </a>
+                      <a
+                        href="#"
+                        onclick="${
+                          user === food.user && `openDeleteModal('${food._id}')`
+                        }"
+                        class="px-4 py-2 text-base font-semibold text-white rounded-lg shadow-md ${
+                          user === food.user
+                            ? 'bg-red-600 hover:bg-red-700 cursor-pointer'
+                            : 'bg-red-200 cursor-not-allowed'
+                        }"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="w-5 h-5"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                          />
+                        </svg>
+                      </a>
+
                     </td>
                   </tr>
         `
         })
-        tableBody.innerHTML = foodList
+        UpdateTable.innerHTML = foodList
       }
     } catch (error) {
       console.log({ error })

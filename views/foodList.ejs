@@ -222,18 +222,29 @@
 
     // Initally Set Loader Before Fetch
     tableBody.innerHTML = `
-              <div class='w-full flex justify-center items-center my-8'>
-                <div class='animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500'></div>
-              </div>
+        <tr>
+          <td colspan='6'>
+            <div class='w-full flex justify-center items-center my-8'>
+            <div class='animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500'></div>
+            </div>
+          </td>
+        </tr>
             `
 
     try {
       const response = await fetch(`/food?search=${searchInput}`)
       const data = await response.json()
       const user = response.headers.get('user')
-      let foodList = ''
-      data.forEach((food, index) => {
-        foodList += `
+
+      if (!data.length) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan='6' class="p-4 m-4 text-sm text-red-700 bg-red-100 rounded-lg font-medium text-center">No item Found!</td> 
+          </tr>`
+      } else {
+        let foodList = ''
+        data.forEach((food, index) => {
+          foodList += `
                   <tr id="${food._id}">
                     <td
                       class="px-5 py-5 text-sm bg-white border-b border-gray-200"
@@ -279,9 +290,9 @@
                     </td>
                   </tr>
         `
-      })
-
-      tableBody.innerHTML = foodList
+        })
+        tableBody.innerHTML = foodList
+      }
 
       // Clear Existing Added Meal
       localStorage.clear()
@@ -311,7 +322,7 @@
     let mealList = document.getElementById('selected-meals')
     if (selectedFoods.length === 0) {
       mealList.innerHTML = `
-      <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg>
+      <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
         <span class="font-medium">Plaese Add Some Food To get Nutrition Chart</span> 
       </div>`
 

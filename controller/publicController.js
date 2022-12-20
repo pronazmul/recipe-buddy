@@ -51,6 +51,11 @@ const addFood = (req, res, next) => {
   res.render('addFood')
 }
 
+// Render Add Food Page
+const updateFood = (req, res, next) => {
+  res.render('updateFood')
+}
+
 // Module Export
 module.exports = {
   getHomePage,
@@ -60,4 +65,5 @@ module.exports = {
   searchFoodPage,
   addFood,
   foodList,
+  updateFood,
 }
